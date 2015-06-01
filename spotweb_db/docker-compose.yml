@@ -1,0 +1,5 @@
+spotwebdb:
+  image: spotweb_db:0.0.1
+  volumes_from:
+    - spotweb_data
+  hostname: spotweb_db
