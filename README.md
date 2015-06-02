@@ -160,3 +160,15 @@ You should be able to use the scripts in the /scripts directory in order to buil
 		f7d935542d4b
 
 - **trigger-retrieve.sh** - Triggers the retrieve script in a running Spotweb container to begin pulling new spots and comments
+
+		$ ./trigger-retrieve.sh
+		Removing Spot information which is beyond retention period,, done
+		Last retrieve at Wed Dec 31 18:00:00 1969
+		Retrieving new Spots from server ssl.astraweb.com...
+		Appr. Message count:    2486861
+		First message number:   1989963
+		Last message number:    4476824
+		Current article number: 1989963
+
+		Retrieving 1989963 till 1994964 (parsed: 5001, in DB: 0, signed: 0, invalid: 5001, rtntn.skip: 0, mod: 0, full: 0, total: 5001) in 2.46 seconds
+		[...]
