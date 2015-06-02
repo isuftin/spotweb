@@ -24,4 +24,6 @@ ENV db_name ""
 ENV db_user ""
 ENV db_pass ""
 
+EXPOSE 80
+
 ENTRYPOINT ["/entrypoint.sh"]
