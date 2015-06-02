@@ -13,7 +13,7 @@ echo "Starting spotweb server"
 echo "Database Information"
 source base.sh
 
-IP_ADDRESS=$($docker_exec inspect --format='{{.NetworkSettings.IPAddress}}' ${db_ps})
+IP_ADDRESS=$($docker_exec inspect --format='{{.NetworkSettings.IPAddress}}' $db_ps)
 echo "IP ADDRESS=$IP_ADDRESS"
 for fn in $($docker_exec run $name_db env); do
         echo $fn

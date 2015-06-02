@@ -2,5 +2,5 @@
 
 source base.sh
 
-$docker_exec build -t spotweb_db:latest ../spotweb_db/
-$docker_exec build -t spotweb:latest ../spotweb_server/
+$docker_exec build -t ${name_db}:latest ../${name_db}/
+$docker_exec build -t spotweb:latest ../${name_server}/
