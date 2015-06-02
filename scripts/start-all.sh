@@ -5,6 +5,8 @@ cd ${0%/*}
 echo "Starting new database container"
 ./start-blank-db.sh
 
+sleep 2
+
 echo "Starting spotweb server"
 ./create-server-container.sh
 
