@@ -5,8 +5,7 @@
 # exist. If not, this will not cause an error. 
 # The database volume container and database container will then be recreated
 
-
-cd ${0%/*}
+source base.sh
 
 ./remove-database-container.sh
 ./remove-volume-container.sh

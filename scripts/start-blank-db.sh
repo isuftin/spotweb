@@ -1,15 +1,11 @@
 #!/bin/bash
 
-cd ${0%/*}
+source base.sh
 
-docker_exec=$(which /usr/bin/docker)
-data_vol_ps=$(${docker_exec} ps -a -q -f name=spotweb_data)
-db_ps=$(${docker_exec} ps -a -q -f name=spotweb_db)
-
-if [ -n "$data_vol_ps" ]; then
+if [ -n "$data_ps" ]; then
 	echo "Spotweb Data Volume already exists."
-	echo "First remove data container ID: ${data_vol_ps}"
-	echo "To remove: $docker_exec rm $data_vol_ps"
+	echo "First remove data container ID: ${data_ps}"
+	echo "To remove: $docker_exec rm $data_ps"
 	echo "Make sure that other containers are not currently using it"
 	exit 1
 fi

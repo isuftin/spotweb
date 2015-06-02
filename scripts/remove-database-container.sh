@@ -1,9 +1,7 @@
 #!/bin/bash
 
-cd ${0%/*}
+source base.sh
 
-docker_exec=$(which /usr/bin/docker)
-db_ps=$(${docker_exec} ps -a -q -f name=spotweb_db)
 cid_file=db.cid
 
 if [ -n "$db_ps" ]; then
