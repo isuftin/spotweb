@@ -2,7 +2,7 @@
 
 cd ${0%/*}
 
-DB_TYPE="mysql"
+DB_TYPE="pdo_mysql"
 DB_NAME="spotweb"
 USER="spotweb"
 PASS="spotweb"
