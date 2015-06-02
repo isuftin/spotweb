@@ -3,7 +3,7 @@
 source base.sh
 
 IP_ADDRESS=$($docker_exec inspect --format='{{.NetworkSettings.IPAddress}}' $db_ps)
-for fn in $($docker_exec run $name_db env); do
+for fn in $($docker_exec run isuftin/${name_db} env); do
 	eval $fn
 done
 
