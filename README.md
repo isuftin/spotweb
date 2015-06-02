@@ -1,4 +1,7 @@
-# Spotweb
+# Spotweb Docker Container
+   ----------------------
+
+## Spotweb
 
 [Spotweb](https://github.com/spotweb/spotweb/wiki)  is a decentralized usenet community based on the [Spotnet](https://github.com/spotnet/spotnet/wiki) protocol.
 
