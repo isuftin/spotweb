@@ -1,4 +1,7 @@
-# Spotweb
+# Spotweb Docker Container
+   ----------------------
+
+## Spotweb
 
 [Spotweb](https://github.com/spotweb/spotweb/wiki)  is a decentralized usenet community based on the [Spotnet](https://github.com/spotnet/spotnet/wiki) protocol.
 
@@ -139,7 +142,7 @@ You should be able to use the scripts in the /scripts directory in order to buil
 		efcc5af70746        isuftin/spotweb_db:latest        "/entrypoint.sh mysq   27 seconds ago      Up 26 seconds              3306/tcp            spotweb_db
 		29da9e292b42        alpine:latest                    "/bin/true"            27 seconds ago                                                     spotweb_data
 
-- **remove-volume-container.sh** - Removes the database volume container named "spotweb_data"
+- **remove-volume-container.sh** - Removes the database volume container named "spotweb_data".  ***WARNING:*** This will remove all of your data!
 
 - **remove-database-container.sh** - Removes the running database container named "spotweb_db"
 
