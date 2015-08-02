@@ -5,7 +5,7 @@
 
 [Spotweb](https://github.com/spotweb/spotweb/wiki)  is a decentralized usenet community based on the [Spotnet](https://github.com/spotnet/spotnet/wiki) protocol.
 
-Spotweb requires an operational webserver with PHP5 installed, it uses either an MySQL or an PostgreSQL database to store it's contents in. 
+Spotweb requires an operational webserver with PHP5 installed, it uses either an MySQL or an PostgreSQL database to store it's contents in.
 
 ## Features
 Spotweb is one of the most-featured Spotnet clients currently available, featuring among other things:
@@ -51,7 +51,7 @@ If you already have a MySQL server available and accepting connections, you can 
 
     docker run -d -p80:80 --name="spotweb_server" isuftin/spotweb
 
-You should now be able to access the Spotweb server at http://localhost/spotweb/install.php to finish configuration of the Spotweb server. 
+You should now be able to access the Spotweb server at http://localhost/spotweb/install.php to finish configuration of the Spotweb server.
 
 Note: The spotweb Apache/PHP server runs in the America/Chicago timezone by default. If you wish to change this, you will want to set the "timezone" environment vairable during your run. See [http://php.net/manual/en/timezones.america.php](http://php.net/manual/en/timezones.america.php) for available timezones. Example (Notice the escaping):
 
@@ -63,7 +63,36 @@ You may be running your own MySQL server in a docker container. If so, you can r
     docker run -d p80:80 --name="spotweb_server" --link="my_db_containers_name_or_id:spotweb_db" isuftin/spotweb
 
 #### I want to run your MySQL Docker container along with your Spotweb container
-There are a set of scripts included to make this easy to do. However, it's also possible to do by hand. First, create a volume container:
+
+The easiest way to get up and running with a full stack (volume container, database container and server container) is to run the top-level docker-compose script:
+
+`$ docker-compose up --no-recreate`
+
+This will create a volume container, start the database container and automatically have it use the volume container as a persistent data store and start the Spotweb server and automatically connect it to the database.
+
+Spotweb will have the administrator account automatically set up with the following credentials:
+
+User: `admin`
+
+Password: `spotweb`
+
+Once the server has started, you should be able to access it at http://localhost/spotweb
+
+If you are running boot2docker, use `boot2docker ip` to get the address to replace localhost with.
+
+You are now free to configure the server as you wish.
+
+```
+**NOTE**
+
+Make sure to run this with the `--no-recreate` flag.
+
+The docker-compose template is set to restart the spotweb and spotweb database containers after the docker daemon restarts. If you omit the `--no-recreate` flag, docker-compose will recreate the server and database containers. When the server container starts for the first time, it resets the  
+
+```
+
+
+If you do not wish to use docker-compose, there are a set of scripts included to make this easy to do. However, it's also possible to do by hand. First, create a volume container:
 
     docker create --name spotweb_data -v /var/lib/mysql alpine:latest /bin/true
 
@@ -111,7 +140,7 @@ You should be able to use the scripts in the /scripts directory in order to buil
 	  REPOSITORY                    TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
 	  isuftin/spotweb               latest              afe125c77e7a        7 seconds ago        320.2 MB
 	  isuftin/spotweb_db            latest              432fd712319f        About a minute ago   282.9 MB
-		
+
 - **create-volume-container.sh** - Creates the database volume container used by the spotweb_db container. The volume container will be named "spotweb_data". The docker container is built from the [Alpine Docker image](http://gliderlabs.viewdocs.io/docker-alpine) due to its small size.
 
 		$ docker ps -a
