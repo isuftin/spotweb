@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo "Creating database configuration"
 db_engine=${db_engine:-mysql}
 db_host=${db_host:-$SPOTWEB_DB_PORT_3306_TCP_ADDR}
 db_name=${db_name:-$SPOTWEB_DB_ENV_MYSQL_DATABASE}
@@ -33,5 +32,7 @@ echo "Database Host: $db_host"
 echo "Database Name: $db_name"
 echo "Database User: $db_user"
 echo "Database Pass: $db_pass"
+echo "Creating database configuration"
 
-/etc/init.d/apache2 restart && tail -F /var/log/apache2/*
+# We sleep here because the MySQL database may not be ready yet
+/etc/init.d/apache2 restart && sleep 30 && /update-db.sh --ip=$db_host --dbname=$db_name --user=$db_user --pass=$db_pass --dbtype=$db_engine && tail -F /var/log/apache2/*

@@ -1,0 +1,20 @@
+spotwebVol:
+  image: alpine
+  volumes:
+    - /var/lib/mysql
+  entrypoint: /bin/true
+
+spotwebDb:
+  image: isuftin/spotweb_db
+  volumes_from:
+    - spotwebVol
+  restart: always
+
+spotwebServer:
+  image: isuftin/spotweb
+  links:
+    - spotwebDb:spotweb_db
+  ports:
+    - "80:80"
+  restart: always
+    
