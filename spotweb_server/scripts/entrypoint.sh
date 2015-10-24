@@ -21,10 +21,7 @@ echo "Enabling PHP mod rewrite"
 /usr/sbin/a2enmod rewrite
 
 echo "Updating hourly cron"
-echo "#!/bin/bash" > /etc/cron.hourly/spotweb-update
-echo "/usr/bin/php /var/www/spotweb/retrieve.php | tee /var/log/spotweb-retrieve.log" >> /etc/cron.hourly/spotweb-update
-echo "" >> /etc/cron.hourly/spotweb-update
-chmod a+x /etc/cron.hourly/spotweb-update
+(crontab -l ; echo "0 * * * * /usr/bin/php /var/www/spotweb/retrieve.php | tee /var/log/spotweb-retrieve.log") | crontab -
 
 chmod a+x /update-db.sh
 
