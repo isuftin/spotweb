@@ -5,13 +5,13 @@ spotwebVol:
   entrypoint: /bin/true
 
 spotwebDb:
-  image: isuftin/spotweb_db
+  image: isuftin/spotweb_db:latest
   volumes_from:
     - spotwebVol
   restart: always
 
 spotwebServer:
-  image: isuftin/spotweb
+  image: isuftin/spotweb:latest
   links:
     - spotwebDb:spotweb_db
   ports:

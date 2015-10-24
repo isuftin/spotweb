@@ -1,5 +1,7 @@
 FROM mysql:latest
 
+MAINTAINER Ivan Suftin <isuftin@gmail.com>
+
 ENV MYSQL_DATABASE spotweb
 ENV MYSQL_USER spotweb
 ENV MYSQL_PASSWORD spotweb
