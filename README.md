@@ -32,7 +32,7 @@ Spotweb is one of the most-featured Spotnet clients currently available, featuri
 
 # Spotweb Docker Container
 
-Runs Spotweb in Apache, exposing port 80 on an Ubuntu 14.10 base, connecting to a MySQL database. Retrieves spots and comments once an hour. Spotweb is downloaded from the [Spotweb GitHub source repository](https://github.com/spotweb) from the [media branch](https://github.com/spotweb/spotweb/tree/media)
+Runs Spotweb in Apache, exposing port 80 on an Ubuntu 15.10 base, connecting to a MySQL database. Retrieves spots and comments once an hour. Spotweb is downloaded from the [Spotweb GitHub source repository](https://github.com/spotweb) from the [media branch](https://github.com/spotweb/spotweb/tree/media)
 
 Prerequisites:
 - [Docker](http://docs.docker.com/installation/) is installed
@@ -79,6 +79,8 @@ Password: `spotweb`
 Once the server has started, you should be able to access it at http://localhost/spotweb
 
 If you are running boot2docker, use `boot2docker ip` to get the address to replace localhost with.
+
+If you are using docker-machine, use `docker-machine ip <name of machine>` to get the address to replace localhost with.
 
 You are now free to configure the server as you wish.
 
