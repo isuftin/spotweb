@@ -1,7 +1,0 @@
-spotweb:
-  image: spotweb:latest
-  hostname: spotweb
-  external_links:
-    - spotwebdb_spotwebdb_1:spotweb_db
-  ports:
-    - "80:80"

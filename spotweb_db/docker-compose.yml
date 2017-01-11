@@ -1,5 +1,0 @@
-spotwebdb:
-  image: spotweb_db:latest
-  volumes_from:
-    - spotweb_data
-  hostname: spotweb_db

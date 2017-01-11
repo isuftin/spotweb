@@ -1,20 +1,42 @@
-spotwebVol:
-  image: alpine
-  volumes:
-    - /var/lib/mysql
-  entrypoint: /bin/true
+---
+version: '2'
 
-spotwebDb:
-  image: isuftin/spotweb_db:latest
-  volumes_from:
-    - spotwebVol
-  restart: always
+networks:
+  spotweb:
 
-spotwebServer:
-  image: isuftin/spotweb:latest
-  links:
-    - spotwebDb:spotweb_db
-  ports:
-    - "80:80"
-  restart: always
-    
+volumes:
+  mysql_datavolume:
+  spotweb_datavolume:
+
+services:
+  spotweb_db:
+    image: isuftin/spotweb_db:1.3.1-1
+    build:
+      context: ./spotweb_db
+    hostname: spotweb_db
+    networks:
+      spotweb:
+        aliases:
+          - spotweb_db
+    volumes:
+      - mysql_datavolume:/var/lib/mysql
+    restart: always
+
+  spotweb_server:
+    image: isuftin/spotweb:1.3.1-1
+    build:
+      context: ./spotweb_server
+    links:
+      - spotweb_db
+    ports:
+      - "80:80"
+    networks:
+      spotweb:
+        aliases:
+          - spotweb_server
+    restart: always
+    command: dockerize -wait tcp://spotweb_db:3306 -timeout 60s /bin/bash -c "source /etc/apache2/envvars && rm -f /var/run/apache2/apache2.pid && apachectl -k restart -DFOREGROUND | true"
+    volumes:
+      - spotweb_datavolume:/var/www/spotweb
+    depends_on:
+      - spotweb_db
