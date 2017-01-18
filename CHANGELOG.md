@@ -1,3 +1,8 @@
+1.3.1-2
+---
+
+- Set cron to automatically run on spotweb server start
+
 1.3.1-1
 ---
 

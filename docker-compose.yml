@@ -10,7 +10,7 @@ volumes:
 
 services:
   spotweb_db:
-    image: isuftin/spotweb_db:1.3.1-1
+    image: isuftin/spotweb_db:1.3.1-2
     build:
       context: ./spotweb_db
     hostname: spotweb_db
@@ -23,7 +23,7 @@ services:
     restart: always
 
   spotweb_server:
-    image: isuftin/spotweb:1.3.1-1
+    image: isuftin/spotweb:1.3.1-2
     build:
       context: ./spotweb_server
     links:
@@ -35,7 +35,7 @@ services:
         aliases:
           - spotweb_server
     restart: always
-    command: dockerize -wait tcp://spotweb_db:3306 -timeout 60s /bin/bash -c "source /etc/apache2/envvars && rm -f /var/run/apache2/apache2.pid && apachectl -k restart -DFOREGROUND | true"
+    command: dockerize -wait tcp://spotweb_db:3306 -timeout 60s /bin/bash -c "cron && source /etc/apache2/envvars && rm -f /var/run/apache2/apache2.pid && apachectl -k restart -DFOREGROUND | true"
     volumes:
       - spotweb_datavolume:/var/www/spotweb
     depends_on:
