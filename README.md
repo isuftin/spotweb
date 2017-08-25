@@ -51,18 +51,18 @@ Runs Spotweb in Apache, exposing port 80 on an Ubuntu 15.10 base, connecting to 
 #### I have my own MySQL server
 If you already have a MySQL server available and accepting connections, you can immediately run the Spotweb server docker container:
 
-    docker run -d -p80:80 --name="spotweb_server" isuftin/spotweb
+    docker run -d -p 80:80 --name="spotweb_server" isuftin/spotweb
 
 You should now be able to access the Spotweb server at http://localhost/spotweb/install.php to finish configuration of the Spotweb server.
 
 Note: The spotweb Apache/PHP server runs in the America/Chicago timezone by default. If you wish to change this, you will want to set the "timezone" environment vairable during your run. See [http://php.net/manual/en/timezones.america.php](http://php.net/manual/en/timezones.america.php) for available timezones. Example (Notice the escaping):
 
-    docker run -d -p80:80 --name="spotweb_server" -e "timezone=America\\\/Los_Angeles" isuftin/spotweb
+    docker run -d -p 80:80 --name="spotweb_server" -e "timezone=America\\\/Los_Angeles" isuftin/spotweb
 
 #### I have my own MySQL Docker container
 You may be running your own MySQL server in a docker container. If so, you can run the Spotweb server docker container to link to the MySQL container:
 
-    docker run -d p80:80 --name="spotweb_server" --link="my_db_containers_name_or_id:spotweb_db" isuftin/spotweb
+    docker run -d p 80:80 --name="spotweb_server" --link="my_db_containers_name_or_id:spotweb_db" isuftin/spotweb
 
 #### I want to run your MySQL Docker container along with your Spotweb container
 
